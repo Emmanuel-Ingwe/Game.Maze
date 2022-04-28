@@ -25,3 +25,9 @@ const walls = [
     Bodies.rectangle(width, height / 2, 40, height, { isStatic: true })
 ];
 World.add(world, walls);
+
+// MZE GENERATION
+
+const grid = Array(4).fill([false, true]);
+
+console.log(grid);
