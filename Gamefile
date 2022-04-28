@@ -12,7 +12,7 @@ const render = Render.create({
         wireframes: false,
         width,
         height
-    }
+    }()
 });
 Render.run(render);
 Runner.run(Runner.create(), engine);

@@ -1,5 +1,6 @@
 const { Engine, Render, Runner, World, Bodies } = Matter;
 
+const cells = 3;
 const width = 600;
 const height = 600;
 
@@ -28,6 +29,55 @@ World.add(world, walls);
 
 // MZE GENERATION
 
-const grid = Array(4).fill([false, true]);
+const shuffle = (arr) => {
+    let counter = arr.lenght;
 
-console.log(grid);
+    while (counter > 0) {
+        const index = Math.floor(math.random() * counter);
+
+        counter--;
+
+        const temp = arr[counter];
+        arr[counter] = arr[index];
+        arr[index] = temp;
+    }
+
+    return arr;
+};
+
+const grid = Array(cells + 4).fill([false, true]);
+
+const verticals = Array(cells).fill(null).map(() => Array(cells).fill(false));
+
+const startRow = Math.floor(Math.random() * cells);
+const startColumn = Math.floor(Math.random() * cells);
+
+const maleek = (row, column) => {
+    // if visited cell,return
+    if (grid[row][column]) {
+        return;
+    }
+
+    // mark as visited
+    grid[row][column] = true;
+
+    // Asemble randmly-ordrd neighbors
+    const neighbors = shuffle([
+        [row - 1, column],
+        [row, column + 1],
+        [row + 1, column],
+        [row, column - 1]
+    ]);
+    console.log(neighbors);
+    // for each neighbor
+
+    // see if that neighbor is out bounds
+
+    // if have visted thstb neighbr, continue next neighbor
+
+    // remove a wall from either horiznytals  or verticals
+
+    // visit that next  cell
+};
+
+maleek(startRow, startColumn);
