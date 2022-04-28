@@ -63,21 +63,28 @@ const maleek = (row, column) => {
 
     // Asemble randmly-ordrd neighbors
     const neighbors = shuffle([
-        [row - 1, column],
-        [row, column + 1],
-        [row + 1, column],
-        [row, column - 1]
+        [row - 1, column, 'up'],
+        [row, column + 1, 'right'],
+        [row + 1, column, 'down'],
+        [row, column - 1, 'left']
     ]);
-    console.log(neighbors);
     // for each neighbor
+    for (let neighbor of neighbors) {
+        const [nextRow, nextColumn, direction] = neighbor;
 
-    // see if that neighbor is out bounds
+        // see if that neighbor is out bounds
+        if (nextRow < 0 || nextRow >= cells || nextColumn >= cells) {
+            continue;
+        }
 
-    // if have visted thstb neighbr, continue next neighbor
+        // if have visted thstb neighbr, continue next neighbor
+        if (grid[nextRow][nextColumn]) {
+            continue;
+        }
 
-    // remove a wall from either horiznytals  or verticals
+        // remove a wall from either horiznytals  or verticals
 
-    // visit that next  cell
-};
+        // visit that next  cell
+    };
 
-maleek(startRow, startColumn);
+    maleek(startRow, startColumn);
