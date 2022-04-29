@@ -83,8 +83,14 @@ const maleek = (row, column) => {
         }
 
         // remove a wall from either horiznytals  or verticals
+        if (direction === 'left') {
+            verticals[row][column - 1] = true;
+        } else if (direction === 'right') {
+            verticals[row][column] = true;
+        }
+    }
 
-        // visit that next  cell
-    };
+    // visit that next  cell
+};
 
-    maleek(startRow, startColumn);
+maleek(1, 1);
