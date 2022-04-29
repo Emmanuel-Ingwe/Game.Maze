@@ -4,6 +4,8 @@ const cells = 3;
 const width = 600;
 const height = 600;
 
+const unitLenght = width / cells;
+
 const engine = Engine.create();
 const { world } = engine;
 const render = Render.create({
@@ -107,6 +109,8 @@ horizontals.forEach(row => {
             return;
         }
 
-        const wall = Bodies.rectangle();
+        const wall = Bodies.rectangle(
+            columnIndex * unitLenght + unitLenght / 2
+        );
     });
 });
