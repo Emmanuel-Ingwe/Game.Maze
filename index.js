@@ -104,8 +104,8 @@ const maleek = (row, column) => {
 
 maleek(startRow, startColumn);
 
-horizontals.forEach(row => {
-    row.forEach((open) => {
+horizontals.forEach((row, rowIndex) => {
+    row.forEach((open, columnIndex) => {
         if (open) {
             return;
         }
@@ -120,5 +120,14 @@ horizontals.forEach(row => {
             }
         );
         World.add(world, wall);
+    });
+});
+
+verticals.forEach((row, rowIndex) => {
+    row.forEach((open, columnindex) => {
+        if (open) {
+            return;
+
+        }
     });
 });
