@@ -1,6 +1,6 @@
 const { Engine, Render, Runner, World, Bodies } = Matter;
 
-const cells = 10;
+const cells = 4;
 const width = 600;
 const height = 600;
 
@@ -23,10 +23,10 @@ Runner.run(Runner.create(), engine);
 
 // Walls
 const walls = [
-    Bodies.rectangle(width / 2, 0, width, 40, { isStatic: true }),
-    Bodies.rectangle(width / 2, height, width, 40, { isStatic: true }),
-    Bodies.rectangle(0, width / 2, 40, height, { isStatic: true }),
-    Bodies.rectangle(width, height / 2, 40, height, { isStatic: true })
+    Bodies.rectangle(width / 2, 0, width, 2, { isStatic: true }),
+    Bodies.rectangle(width / 2, height, width, 2, { isStatic: true }),
+    Bodies.rectangle(0, width / 2, 2, height, { isStatic: true }),
+    Bodies.rectangle(width, height / 2, 2, height, { isStatic: true })
 ];
 World.add(world, walls);
 
@@ -142,7 +142,7 @@ verticals.forEach((row, rowIndex) => {
     });
 });
 
-
+// GOAL!!
 const goal = Bodies.rectangle(
     width - unitLenght / 2,
     height - unitLenght / 2,
@@ -153,3 +153,29 @@ const goal = Bodies.rectangle(
     }
 );
 World.add(world, goal);
+
+// BALL
+const ball = Bodies.circle(
+    unitLenght / 2,
+    unitLenght / 2,
+    unitLenght / 4
+);
+World.add(world, ball);
+
+document.addEventListener('keydown', event => {
+    if (event.keyCode === 87) {
+        console.log('moee');
+    }
+
+    if (event.keyCode === 68) {
+        console.log('mveeee');
+    }
+
+    if (event.keyCode === 83) {
+        console.log('moveee');
+    }
+
+    if (event.keyCode === 65) {
+        console.log('movee');
+    }
+});
