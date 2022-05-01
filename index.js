@@ -148,6 +148,7 @@ const goal = Bodies.rectangle(
     unitLenght * 0.7,
     unitLenght * 0.7,
     {
+        label: 'goal',
         isStatic: true
     }
 );
@@ -157,7 +158,9 @@ World.add(world, goal);
 const ball = Bodies.circle(
     unitLenght / 2,
     unitLenght / 2,
-    unitLenght / 4);
+    unitLenght / 4, {
+    label: 'ball'
+});
 World.add(world, ball);
 
 document.addEventListener('keydown', event => {
@@ -182,4 +185,15 @@ document.addEventListener('keydown', event => {
 
 // WIN CONDITION
 
-Events.on(engine, 'collision');
+Events.on(engine, 'collisionStart', event => {
+    event.pairs.forEach(collision => {
+        const labels = ['ball', 'goal'];
+
+        if (
+            labels.includes(collision.bodyA.label) &&
+            labels.includes(collision.bodyB.label)
+        ) {
+            console.log('user Won!');
+        }
+    });
+});
