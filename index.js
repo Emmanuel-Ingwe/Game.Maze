@@ -1,11 +1,10 @@
-const { Engine, Render, Runner, World, Bodies } = Matter;
+const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 
 const cells = 6;
 const width = 600;
 const height = 600;
 
 const unitLenght = width / cells;
-
 
 const engine = Engine.create();
 const { world } = engine;
@@ -180,3 +179,7 @@ document.addEventListener('keydown', event => {
         Body.setVelocity(ball, { x: x - 5, y });
     }
 });
+
+// WIN CONDITION
+
+Events.on(engine, 'collision');
