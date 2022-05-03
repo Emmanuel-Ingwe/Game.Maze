@@ -1,7 +1,7 @@
 const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 
-const cellsHorizontal = 5;
-const cellsVertical = 5;
+const cellsHorizontal = 7;
+const cellsVertical = 7;
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -9,6 +9,7 @@ const unitLenghtX = width / cellsHorizontal;
 const unitLenghtY = height / cellsVertical;
 
 const engine = Engine.create();
+engine.world.gravity.y = 0;
 const { world } = engine;
 const render = Render.create({
     element: document.body,
@@ -26,18 +27,18 @@ Runner.run(Runner.create(), engine);
 const walls = [
     Bodies.rectangle(width / 2, 0, width, 2, { isStatic: true }),
     Bodies.rectangle(width / 2, height, width, 2, { isStatic: true }),
-    Bodies.rectangle(0, width / 2, 2, height, { isStatic: true }),
+    Bodies.rectangle(0, height / 2, 2, height, { isStatic: true }),
     Bodies.rectangle(width, height / 2, 2, height, { isStatic: true })
 ];
 World.add(world, walls);
 
 // MZE GENERATION
 
-const shuffle = (arr) => {
+const shuffle = arr => {
     let counter = arr.lenght;
 
     while (counter > 0) {
-        const index = Math.floor(math.random() * counter);
+        const index = Math.floor(Math.random() * counter);
 
         counter--;
 
@@ -58,7 +59,7 @@ const horizontals = Array(cellsHorizontal - 1).fill(null).map(() => Array(cellsH
 const startRow = Math.floor(Math.random() * cellsVertical);
 const startColumn = Math.floor(Math.random() * cellsHorizontal);
 
-const maleek = (row, column) => {
+const stepThroughCell = (row, column) => {
     // if visited cell,return
     if (grid[row][column]) {
         return;
@@ -98,12 +99,12 @@ const maleek = (row, column) => {
         } else if (direction === 'down') {
             horizontals[row][column] = true;
         }
-    }
 
-    // visit that next  cell
+        stepThroughCell(nextRow, nextColumn);
+    }
 };
 
-maleek(startRow, startColumn);
+stepThroughCell(startRow, startColumn);
 
 horizontals.forEach((row, rowIndex) => {
     row.forEach((open, columnIndex) => {
