@@ -2,7 +2,6 @@ const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 
 const cellsHorizontal = 4;
 const cellsVertical = 3;
-const cells = 6;
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -50,14 +49,14 @@ const shuffle = (arr) => {
     return arr;
 };
 
-const grid = Array(cells).fill(null).map(() => Array(cells).fill(false));
+const grid = Array(cellsVertical).fill(null).map(() => Array(cellsHorizontal).fill(false));
 
-const verticals = Array(cells).fill(null).map(() => Array(cells - 1).fill(false));
+const verticals = Array(cellsVertical).fill(null).map(() => Array(cellsVertical - 1).fill(false));
 
-const horizontals = Array(cells - 1).fill(null).map(() => Array(cells).fill(false));
+const horizontals = Array(cellsHorizontal - 1).fill(null).map(() => Array(cellsHorizontal).fill(false));
 
-const startRow = Math.floor(Math.random() * cells);
-const startColumn = Math.floor(Math.random() * cells);
+const startRow = Math.floor(Math.random() * cellsVertical);
+const startColumn = Math.floor(Math.random() * cellsHorizontal);
 
 const maleek = (row, column) => {
     // if visited cell,return
@@ -80,7 +79,7 @@ const maleek = (row, column) => {
         const [nextRow, nextColumn, direction] = neighbor;
 
         // see if that neighbor is out bounds
-        if (nextRow < 0 || nextRow >= cells || nextColumn >= cells) {
+        if (nextRow < 0 || nextRow >= cellsVertical || nextColumn >= cellsHorizontal) {
             continue;
         }
 
