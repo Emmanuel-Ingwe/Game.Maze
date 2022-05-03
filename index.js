@@ -100,7 +100,7 @@ const stepThroughCell = (row, column) => {
             horizontals[row][column] = true;
         }
 
-        stepThroughCell(nextRow, nextColumn);
+        // stepThroughCell(nextRow, nextColumn);
     }
 };
 
