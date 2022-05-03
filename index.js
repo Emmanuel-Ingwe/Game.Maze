@@ -112,9 +112,9 @@ horizontals.forEach((row, rowIndex) => {
         }
 
         const wall = Bodies.rectangle(
-            columnIndex * unitLenght + unitLenght / 2,
-            rowIndex * unitLenght + unitLenght,
-            unitLenght,
+            columnIndex * unitLenghtX + unitLenghtX / 2,
+            rowIndex * unitLenghtY + unitLenghtY,
+            unitLenghtX,
             5,
             {
                 label: 'wall',
@@ -132,10 +132,10 @@ verticals.forEach((row, rowIndex) => {
         }
 
         const wall = Bodies.rectangle(
-            columnIndex * unitLenght + unitLenght,
-            rowIndex * unitLenght + unitLenght / 2,
+            columnIndex * unitLenghtX + unitLenghtX,
+            rowIndex * unitLenghtY + unitLenghtY / 2,
             5,
-            unitLenght,
+            unitLenghtY,
             {
                 label: 'wall',
                 isStatic: true
@@ -147,10 +147,10 @@ verticals.forEach((row, rowIndex) => {
 
 // GOAL!!
 const goal = Bodies.rectangle(
-    width - unitLenght / 2,
-    height - unitLenght / 2,
-    unitLenght * 0.7,
-    unitLenght * 0.7,
+    width - unitLenghtX / 2,
+    height - unitLenghtY / 2,
+    unitLenghtX * 0.7,
+    unitLenghtY * 0.7,
     {
         label: 'goal',
         isStatic: true
@@ -159,10 +159,12 @@ const goal = Bodies.rectangle(
 World.add(world, goal);
 
 // BALL
+
+const ballRadius = Math.min(unitLenghtX, unitLenghtY) / 2;
 const ball = Bodies.circle(
-    unitLenght / 2,
-    unitLenght / 2,
-    unitLenght / 4, {
+    unitLenghtX / 2,
+    unitLenghtY / 2,
+    ballRadius, {
     label: 'ball'
 });
 World.add(world, ball);
