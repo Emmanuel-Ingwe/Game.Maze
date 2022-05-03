@@ -10,9 +10,30 @@
         body {
             margin: 0;
         }
+        .hidden {
+            display: none !important
+        }
+
+        h1 {
+            color: wheat;
+            font-size: 66px;
+        }
+        .winner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 1;
+            height: 100vh;
+            width: 100vw;
+        }
     </style>
 </head>
 <body>
+    <div class="winner hidden">
+        <h1>You Win</h1>
+        <button>PlayAgain</button>
+    </div>
     
     <script src="index.js"></script>
 </body>
